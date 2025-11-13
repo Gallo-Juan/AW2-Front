@@ -18,7 +18,7 @@ window.addEventListener('load',() => {
   .then(res => res.json())
   .then(data => {
         const cards = data.map(e =>
-                cardComponents(e.id,e.imagen, e.titulo, e.descripcion, e.precio)
+                cardComponents(e._id,e.imagen, e.titulo, e.descripcion, e.precio)
         ).join('');
     cardContainer.innerHTML = cards;
   });
@@ -48,6 +48,9 @@ cardContainer.addEventListener('click', (e) => {
        
         alert("Debes iniciar sesión para comprar.");
         window.location.href = '../login/login.html'; 
+    }
+
+    const _id=boton.dataset._id;
     const nombre = boton.dataset.nombre;
     const imagen = boton.dataset.imagen;
     const texto = boton.dataset.texto;
@@ -67,7 +70,7 @@ cardContainer.addEventListener('click', (e) => {
     const producto = { _id, nombre, imagen, texto, precio, cantidad };
     agregarAlCarrito(producto);
   }
-})
+)
 
 function agregarAlCarrito(producto) { 
 let carrito = getData('carrito') || []

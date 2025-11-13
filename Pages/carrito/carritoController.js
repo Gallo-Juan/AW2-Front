@@ -1,4 +1,4 @@
-import { NavBar } from "/components/NavBar.js"
+import NavBar  from "/components/NavBar.js"
 import { removeSessionItem } from "/utils/sessionstorageController.js"
 import { cardCarrito } from "/components/cardCarrito.js"
 import { setData, getData, deleteData } from "../../Utils/localstorageController.js"

@@ -50,7 +50,7 @@ cardContainer.addEventListener('click', (e) => {
         window.location.href = '../login/login.html'; 
     } else {
 
-    const _id = boton.dataset.id;
+    const _id = boton.dataset._id;
     const nombre = boton.dataset.nombre;
     const imagen = boton.dataset.imagen;
     const texto = boton.dataset.texto;
