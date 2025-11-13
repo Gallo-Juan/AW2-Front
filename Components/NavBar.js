@@ -16,7 +16,7 @@ if (!usuario) {
         { id: 'electronica', title: 'Electrónica', link: '/pages/categorias/Electronica.html' },
         { id: 'carrito', title: '<img src="/Images/carrito.png" alt="Carrito" width="40" height="40" class="rounded-circle img-carrito">', link: "/pages/carrito/carrito.html" },
         // 4. Cambiamos "Cerrar Sesión" por "Iniciar Sesión"
-        { id: 'iniciarSesion', title: 'Iniciar Sesión', link: '/ingreso/login.html' } // <-- Ajusta esta ruta a tu login
+        { id: 'iniciarSesion', title: 'Iniciar Sesión', link: '/Pages/login/login.html' } // <-- Ajusta esta ruta a tu login
     ];
 
     NavBar = `
