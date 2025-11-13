@@ -17,7 +17,7 @@ registroForm.addEventListener('submit',async(e)=>{
     }
 
     try {
-        const response = await fetch(`${API}/usuarios/registrar`, {
+        const response = await fetch(`${API}/usuarios/registro`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ nombre, apellido, email, contrasena })
@@ -29,7 +29,7 @@ registroForm.addEventListener('submit',async(e)=>{
            throw new Error(data.message);
         }      
               
-        window.location.href="../index.html";
+        window.location.href="../../index.html";
 
     }catch(error) {       
         alert(error.message);

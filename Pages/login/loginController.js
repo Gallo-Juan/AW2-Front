@@ -1,12 +1,10 @@
-import { API } from "./Api/api.js";
-import {alert, handleAlert} from "./Components/alerta.js"
+import { API } from "../../Api/api.js";
+import {alert, handleAlert} from "../../Components/alerta.js"
 
 const loginForm=document.getElementById('login')
 const alerta=document.getElementById('alert-container')
 
 alerta.innerHTML=alert()
-
-
 
 loginForm.addEventListener('submit',async(e)=>{
     e.preventDefault()
@@ -31,7 +29,7 @@ loginForm.addEventListener('submit',async(e)=>{
         sessionStorage.setItem('usuario', JSON.stringify(data)); 
 
         //alert('Login exitoso');
-        window.location.href='/Pages/inicio/inicio.html' 
+        window.location.href='../../Pages/inicio/inicio.html' 
     }catch(error) {
         console.error('Error de Login:', error);
         handleAlert(error.message);

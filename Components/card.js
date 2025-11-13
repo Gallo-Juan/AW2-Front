@@ -1,4 +1,4 @@
-export const cardComponents=(id,imagen,nombre,texto,precio)=>{
+export const cardComponents=(_id,imagen,nombre,texto,precio)=>{
     return `
      <div class="bg-white rounded-lg shadow-md overflow-hidden flex flex-col transform hover:scale-105 transition-transform duration-300 ease-in-out">
             
@@ -20,7 +20,7 @@ export const cardComponents=(id,imagen,nombre,texto,precio)=>{
                             <input type="number" class="w-16 border border-gray-300 rounded-md px-2 py-1 text-center focus:outline-none focus:ring-2 focus:ring-blue-500" min="1" value="1" step="1">
                             
                             <button class="bg-blue-600 text-white p-2 rounded-md hover:bg-blue-700 transition duration-300 btn-comprar" 
-                                    data-id="${id}" 
+                                    data-_id="${_id}" 
                                     data-nombre="${nombre}" 
                                     data-texto="${texto}" 
                                     data-imagen="${imagen}" 

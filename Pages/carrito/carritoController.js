@@ -33,7 +33,7 @@ window.addEventListener('load',() => {
     document.title=`${pageName} - Tu Rincon Online`  
     const prod=getData('carrito') || []
     const cards=prod.map(e=>{
-            return cardCarrito(e.id,e.imagen,e.nombre,e.texto,e.precio,e.cantidad)      
+            return cardCarrito(e._id,e.imagen,e.nombre,e.texto,e.precio,e.cantidad)      
 }).join('')
 
     cardContainer.innerHTML=cards
@@ -52,12 +52,12 @@ function configurarBotonesEliminar() {
 
   botones.forEach(btn => {
     btn.addEventListener('click', () => {
-      const idProducto = btn.dataset.id;
+      const idProducto = btn.dataset._id;
 
       let carrito = getData('carrito') || [];
 
       // Filtrar el producto por id
-      carrito = carrito.filter(producto => producto.id != idProducto);
+      carrito = carrito.filter(producto => producto._id != idProducto);
 
       setData('carrito', carrito);
       
@@ -80,16 +80,21 @@ btnFinalizar.addEventListener('click',async () => {
 
     const totalNumerico = parseFloat(totalContainer.textContent.replace(/[^0-9.-]+/g,""));
 
-      const productosCompletosArray = Object.values(carrito || {});
-       
-      const idsDeProductos = productosCompletosArray.map(p => p.id);
-  
+      const productosCompletosArray = Object.values(carrito || {});      
+        
+      const productosParaVenta = productosCompletosArray.map(p => {
+            return {
+                producto: p._id,
+                cantidad: p.cantidad,
+                precio: p.precio
+            };
+        });
 
       const venta = {
             id_usuario: usuario.id,
             total: totalNumerico, 
             direccion: direccion, 
-            productos: idsDeProductos
+            productos: productosParaVenta
         };
 
         console.log('Datos que se enviarán al backend:', JSON.stringify(venta, null, 2));
