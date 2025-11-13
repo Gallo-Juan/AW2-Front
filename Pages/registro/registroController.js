@@ -29,7 +29,7 @@ registroForm.addEventListener('submit',async(e)=>{
            throw new Error(data.message);
         }      
               
-        window.location.href="../../index.html";
+        window.location.href="../login/login.html";
 
     }catch(error) {       
         alert(error.message);
