@@ -2,7 +2,7 @@
 import { cardComponents } from "../../Components/card.js";
 import { API } from '../../Api/api.js';
 import NavBar from "../../Components/NavBar.js";
-import { getData, setData } from "../../Utils/localstorageController.js";
+import { deleteData, getData, setData } from "../../Utils/localstorageController.js";
 import { removeSessionItem } from "../../Utils/sessionStorageController.js"; 
 
 let cardContainer=document.getElementById('card-container')
@@ -34,6 +34,7 @@ window.addEventListener('load',() => {
             
            removeSessionItem('usuario')
            removeSessionItem('token')  
+           deleteData('carrito')
                         
             window.location.href = '/';
         });
@@ -71,7 +72,10 @@ cardContainer.addEventListener('click', (e) => {
     const cantidad = parseInt(inputCantidad.value) || 1;
 
     const producto = { _id, nombre, imagen, texto, precio, cantidad };
-    agregarAlCarrito(producto);
+     const exito=agregarAlCarrito(producto);
+    if(exito){
+      alert('Se añadió tu compra al carrito')
+    }
   }
 )
 
@@ -86,6 +90,7 @@ let carrito = getData('carrito') || []
   }
 
   setData('carrito', carrito) 
-  alert('Se añadió tu compra al carrito')
+
+  return true;
 }
 
