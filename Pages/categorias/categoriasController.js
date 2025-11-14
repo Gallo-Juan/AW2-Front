@@ -2,6 +2,7 @@ import  NavBar  from "../../Components/NavBar.js"
 import { cardComponents } from "../../Components/card.js"
 import { API } from "../../Api/api.js"
 import { getData, setData } from "../../Utils/localstorageController.js"
+import { removeSessionItem } from "../../Utils/sessionStorageController.js"
 
 let cardContainer=document.getElementById('card-container')
 let navContainer = document.querySelector('header')
@@ -31,7 +32,8 @@ window.addEventListener('load',() => {
             
             event.preventDefault(); 
             
-            sessionStorage.removeItem('usuario');           
+            removeSessionItem('usuario')
+            removeSessionItem('token')            
                         
             window.location.href = '/';
         });

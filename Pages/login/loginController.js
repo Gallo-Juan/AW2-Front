@@ -9,26 +9,36 @@ alerta.innerHTML=alert()
 loginForm.addEventListener('submit',async(e)=>{
     e.preventDefault()
 
-    const email=document.getElementById('email').value
+    const em=document.getElementById('email').value
     const contrasena=document.getElementById('pass').value
 
     try {
         const response = await fetch(`${API}/usuarios/login`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ email, contrasena })
+            body: JSON.stringify({ email: em, contrasena })
         });
-
-        const data = await response.json();
 
         if (!response.ok) {          
              handleAlert('El email y/o la contraseña son incorrectas');
             return
         }
         
-        sessionStorage.setItem('usuario', JSON.stringify(data)); 
+        const data = await response.json();
 
-        //alert('Login exitoso');
+        const { token, id, nombre, apellido, email } = data;
+    
+        sessionStorage.setItem('token', token);
+    
+        const usuario = {
+            id: id,
+            nombre: nombre,
+            apellido: apellido,
+            email: email
+        };
+    
+        sessionStorage.setItem('usuario', JSON.stringify(usuario));
+
         window.location.href='../../Pages/inicio/inicio.html' 
     }catch(error) {
         console.error('Error de Login:', error);

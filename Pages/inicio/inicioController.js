@@ -3,6 +3,7 @@ import { cardComponents } from "../../Components/card.js";
 import { API } from '../../Api/api.js';
 import NavBar from "../../Components/NavBar.js";
 import { getData, setData } from "../../Utils/localstorageController.js";
+import { removeSessionItem } from "../../Utils/sessionStorageController.js"; 
 
 let cardContainer=document.getElementById('card-container')
 let pageName=document.getElementById('pageName').value
@@ -31,7 +32,8 @@ window.addEventListener('load',() => {
             
             event.preventDefault(); 
             
-            sessionStorage.removeItem('usuario');           
+           removeSessionItem('usuario')
+           removeSessionItem('token')  
                         
             window.location.href = '/';
         });
@@ -43,8 +45,9 @@ cardContainer.addEventListener('click', (e) => {
     if (!boton) return;
 
      const usuario = sessionStorage.getItem('usuario');
+     const token=sessionStorage.getItem('token');
 
-    if (!usuario) {
+    if (!usuario || !token) {
        
         alert("Debes iniciar sesión para comprar.");
         window.location.href = '../login/login.html'; 

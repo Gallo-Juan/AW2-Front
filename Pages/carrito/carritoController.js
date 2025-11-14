@@ -23,7 +23,8 @@ window.addEventListener('load',() => {
   if (btnLogout) {
     btnLogout.addEventListener('click', (e) => {
       e.preventDefault()
-      removeSessionItem('userData')  
+      removeSessionItem('usuario')
+      removeSessionItem('token')  
       deleteData('carrito')
       window.location.href = '../../index.html'
     })
@@ -70,10 +71,11 @@ function configurarBotonesEliminar() {
 btnFinalizar.addEventListener('click',async () => {
    try { 
     const usuario=getSessionItem('usuario')
+    const token=sessionStorage.getItem('token')
     const carrito=getData('carrito')
     const direccion=document.getElementById('direccion').value
 
-    if(!usuario || !carrito){
+    if(!token || !usuario || !carrito){
       alert('No se pudo obtener la información del usuario o del carrito. Por favor, inicie sesión nuevamente.');
             return;
     }
@@ -90,8 +92,7 @@ btnFinalizar.addEventListener('click',async () => {
             };
         });
 
-      const venta = {
-            id_usuario: usuario.id,
+      const venta = {           
             total: totalNumerico, 
             direccion: direccion, 
             productos: productosParaVenta
@@ -100,7 +101,8 @@ btnFinalizar.addEventListener('click',async () => {
         console.log('Datos que se enviarán al backend:', JSON.stringify(venta, null, 2));
         const response = await fetch(`${API}/ventas`, {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
+            headers: { 'Content-Type': 'application/json' ,
+            'Authorization': `Bearer ${token}`},
             body: JSON.stringify(venta)
         });
 
