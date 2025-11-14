@@ -86,6 +86,6 @@ let carrito = getData('carrito') || []
   }
 
   setData('carrito', carrito) 
- 
+  alert('Se añadió tu compra al carrito')
 }
 

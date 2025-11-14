@@ -86,5 +86,6 @@ function agregarAlCarrito(producto) {
 
   setData('carrito', carrito)
  
+  alert('Se añadió tu compra al carrito')
 }
 
